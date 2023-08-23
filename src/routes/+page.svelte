@@ -1,4 +1,5 @@
 <script>
+	import ContextsFilter from './ContextsFilter.svelte';
 	import FileInfo from './FileInfo.svelte';
 	import OpenFile from './OpenFile.svelte';
 	import StatusArea from './StatusArea.svelte';
@@ -10,6 +11,7 @@
 
 <StatusArea />
 <OpenFile />
+<ContextsFilter />
 <TodosFilter />
 <TodoAdd />
 <TodoEdit />
