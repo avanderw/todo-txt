@@ -3,12 +3,12 @@
 	import OpenFile from './OpenFile.svelte';
 	import TodoAdd from './TodoAdd.svelte';
 	import TodosFilter from './TodosFilter.svelte';
-	import TodoView from './TodoView.svelte';
+	import TodosView from './TodosView.svelte';
 </script>
 
 <OpenFile />
 <TodosFilter />
 <br/>
 <TodoAdd />
-<TodoView />
+<TodosView />
 <FileInfo />
