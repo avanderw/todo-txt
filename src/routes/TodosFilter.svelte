@@ -1,19 +1,18 @@
 <script>
 	//@ts-nocheck
-    import { todoItems, todoTxt } from '$lib/stores';
+    import { todoItems, todoTxt, filter } from '$lib/stores';
 
-	let filter;
     function filterItems() {
-        $todoItems = $todoTxt.items().filter((item) => item.render().includes(filter));
+        $todoItems = $todoTxt.items().filter((item) => item.render().includes($filter));
     }
 
     function clearFilter() {
-        filter = null;
+        $filter = null;
         $todoItems = $todoTxt.items();
     }
 </script>
 
-<input on:keyup={filterItems} type="text" bind:value={filter} />
-{#if filter}
+<input on:keyup={filterItems} type="text" bind:value={$filter} />
+{#if $filter}
 	<button on:click={clearFilter}>clear filter</button>
 {/if}
