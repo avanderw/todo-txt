@@ -1,13 +1,13 @@
 <script>
     // @ts-nocheck
-    import { todos } from '$lib/stores';
+    import { file, todoItems } from '$lib/stores';
 </script>
 
-<h1>Todo List</h1>
+<h1>{$file.name}</h1>
 
-{#if $todos}
-    <p>Number of todos: {$todos.length}</p>
-    {#each $todos.items() as todo}
+{#if $todoItems}
+    <h2>Number of todos: {$todoItems.length}</h2>
+    {#each $todoItems as todo}
         <p>{todo.render()}</p>
     {/each}
 {/if}

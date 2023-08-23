@@ -1,7 +1,7 @@
 <script>
     // @ts-nocheck
 	import { browser } from '$app/environment';
-    import { file, todos } from '$lib/stores';
+    import { file, todoTxt, todoItems } from '$lib/stores';
     import { TodoTxt } from '$lib/todotxt';
 
 	let info;
@@ -14,9 +14,7 @@
     let fileHandle;
 	async function openFile() {
 		[fileHandle] = await window.showOpenFilePicker({ multiple: false });
-		$file = await fileHandle.getFile();
-		let text = await $file.text();
-        $todos = TodoTxt.parseFile(text);
+		readFile(fileHandle);
 	}
 
 	if (browser) {
@@ -35,15 +33,22 @@
 			e.stopPropagation();
 			$file = e.dataTransfer.files[0];
             fileHandle = await e.dataTransfer.items[0].getAsFileSystemHandle();
-			let text = await $file.text();
-            $todos = TodoTxt.parseFile(text);
+			readFile(fileHandle);
 		});
 	}
 
     async function saveFile() {
         const writable = await fileHandle.createWritable();
-        await writable.write(text);
+        await writable.write($todoItems.map((item) => item.render()).join("\n")+"\n");
         await writable.close();
+        readFile(fileHandle);
+    }
+
+    async function readFile(fileHandle) {
+        $file = await fileHandle.getFile();
+        let text = await $file.text();
+        $todoTxt = TodoTxt.parseFile(text);
+        $todoItems = $todoTxt.items();
     }
 </script>
 
