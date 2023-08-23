@@ -1,11 +1,13 @@
 <script>
 	import FileInfo from './FileInfo.svelte';
 	import OpenFile from './OpenFile.svelte';
-	import SortTodos from './SortTodos.svelte';
-	import TodoList from './TodoList.svelte';
+	import TodosFilter from './TodosFilter.svelte';
+	import TodosSort from './TodosSort.svelte';
+	import TodoView from './TodoView.svelte';
 </script>
 
 <OpenFile />
-<SortTodos />
-<TodoList />
+<TodosFilter />
+<TodosSort />
+<TodoView />
 <FileInfo />
