@@ -1,14 +1,13 @@
 <script>
 	// @ts-nocheck
 	import { browser } from '$app/environment';
-	import { file, todoTxt } from '$lib/stores';
+	import { file, todoTxt, status } from '$lib/stores';
 	import { TodoTxt } from '$lib/todotxt';
 
-	let info;
 	if (browser && 'showOpenFilePicker' in window) {
-		info = 'showOpenFilePicker is supported';
+		$status = 'showOpenFilePicker is supported';
 	} else {
-		info = 'showOpenFilePicker is not supported, use an alternative';
+		$status = 'showOpenFilePicker is not supported, use an alternative';
 	}
 
 	let fileHandle;
@@ -41,6 +40,7 @@
 		$file = await fileHandle.getFile();
 		let text = await $file.text();
 		$todoTxt = TodoTxt.parseFile(text);
+        $status = "File loaded";
 	}
 
 	async function saveFile() {
@@ -54,7 +54,7 @@
 		await writable.write(content);
 		await writable.close();
 		readFile();
-        info = "File saved";
+        $status = "File saved";
 	}
 
     if (browser) {
@@ -67,8 +67,6 @@
     }
 
 </script>
-
-<p>{info}</p>
 
 <button on:click={readFile}>reload</button>
 <button on:click={openFile}>open</button>

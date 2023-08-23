@@ -1,6 +1,6 @@
 <script>
 	// @ts-nocheck
-	import { editTodo, todoItems } from '$lib/stores';
+	import { editTodo, todoItems, status } from '$lib/stores';
 
     let value;
 
@@ -13,6 +13,7 @@
         $todoItems = $todoItems;
         value = null;
         $editTodo = null;
+        $status = "Todo updated";
     }
 </script>
 

@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { writable } from "svelte/store";
 
+export const status = writable(null);
 export const file = writable(null);
 export const todoTxt = writable(null);
 export const todoItems = writable(null);

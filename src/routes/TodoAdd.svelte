@@ -1,6 +1,6 @@
 <script>
     // @ts-nocheck
-    import { todoTxt, filter } from '$lib/stores';
+    import { todoTxt, status } from '$lib/stores';
 
     let value = "";
 
@@ -8,6 +8,7 @@
         $todoTxt.addItem(value);
         $todoTxt = $todoTxt;
         value = "";
+        $status = "Todo added";
     }
 </script>
 
