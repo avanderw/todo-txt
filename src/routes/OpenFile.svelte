@@ -40,7 +40,7 @@
 		$file = await fileHandle.getFile();
 		let text = await $file.text();
 		$todoTxt = TodoTxt.parseFile(text);
-        $status = "File loaded";
+		$status = 'File loaded';
 	}
 
 	async function saveFile() {
@@ -54,18 +54,23 @@
 		await writable.write(content);
 		await writable.close();
 		readFile();
-        $status = "File saved";
+		$status = 'File saved';
 	}
 
-    if (browser) {
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 's' && e.ctrlKey) {
-                e.preventDefault();
-                saveFile();
-            }
-        });
-    }
+	if (browser) {
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 's' && e.ctrlKey) {
+				e.preventDefault();
+				saveFile();
+			}
+		});
+	}
 
+	if (browser) {
+		window.onbeforeunload = function () {
+			return 'Are you sure you want to leave?';
+		};
+	}
 </script>
 
 <button on:click={readFile}>reload</button>
