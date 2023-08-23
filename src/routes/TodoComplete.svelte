@@ -1,19 +1,19 @@
 <script>
 	// @ts-nocheck
-    import { todoItems, status } from '$lib/stores';
+	import { todoItems, status } from '$lib/stores';
 
 	export let todo;
 
 	function completeTask(todo) {
 		todo.completeTask();
-        $todoItems = $todoItems;
-        $status = "Todo completed";
+		$todoItems = $todoItems;
+		$status = 'Todo completed';
 	}
 
 	function uncompleteTask(todo) {
 		todo.uncompleteTask();
-        $todoItems = $todoItems;
-        $status = "Todo uncompleted";
+		$todoItems = $todoItems;
+		$status = 'Todo uncompleted';
 	}
 </script>
 

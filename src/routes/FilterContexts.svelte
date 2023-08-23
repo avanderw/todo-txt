@@ -11,7 +11,7 @@
 	function filterContext(context) {
 		if ($filter && $filter.includes(context)) {
 			$filter = $filter.replace(context, '');
-            $filter = $filter.trim();
+			$filter = $filter.trim();
 			return;
 		}
 
@@ -19,10 +19,6 @@
 	}
 </script>
 
-{#if contexts.length === 0}
-	<p>No contexts found</p>
-{:else}
-	{#each contexts as context}
-		<button on:click={filterContext(context)}>{context}</button>
-	{/each}
-{/if}
+{#each contexts as context}
+	<button on:click={filterContext(context)}>{context}</button>
+{/each}

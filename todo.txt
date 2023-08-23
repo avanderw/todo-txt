@@ -1,10 +1,9 @@
 (A) 2023-08-23 Add check when modified and leaving browser tab
 (A) 2023-08-23 Style the application
-(B) 2023-08-23 Add support for +projects
-(B) 2023-08-23 Add the ability to set priority
 (C) 2023-08-23 Remap priority to user set values
-x 2023-08-23 (B) 2023-08-23 Add support for @contexts @another
+x 2023-08-23 (B) 2023-08-23 Add support for +projects
 x 2023-08-23 2023-08-23 Add refresh button to reload the file
+x 2023-08-23 2023-08-23 Add support for @contexts @another
 x 2023-08-23 2023-08-23 Add the ability to add new todo items
 x 2023-08-23 2023-08-23 Add the ability to delete todo items
 x 2023-08-23 2023-08-23 Add the ability to edit todo items
