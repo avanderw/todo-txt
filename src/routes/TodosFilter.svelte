@@ -1,9 +1,8 @@
 <script>
 	//@ts-nocheck
-	let filter;
-
     import { todoItems, todoTxt } from '$lib/stores';
 
+	let filter;
     function filterItems() {
         $todoItems = $todoTxt.items().filter((item) => item.render().includes(filter));
     }
