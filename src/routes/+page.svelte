@@ -8,10 +8,12 @@
 	import TodosView from './TodosView.svelte';
 	import FilterContexts from './FilterContexts.svelte';
 	import FilterProjects from './FilterProjects.svelte';
+	import FilterPriorities from './FilterPriorities.svelte';
 </script>
 
 <StatusArea />
 <OpenFile />
+<FilterPriorities />
 <FilterContexts />
 <FilterProjects />
 <TodosFilter />
