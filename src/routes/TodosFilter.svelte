@@ -19,10 +19,16 @@
 	todoTxt.subscribe((value) => {
 		filterTodos($filter);
 	});
+
+    function clearFilter(e) {
+        if (e.key === "Escape") {
+            $filter = null;
+        }
+    }
 </script>
 
 <form>
-	<span>filter</span> <input type="text" bind:value={$filter} />
+	<span>filter</span> <input type="text" on:keyup={clearFilter} bind:value={$filter} />
 	{#if $filter}
 		<button on:click={() => ($filter = null)}>clear filter</button>
 	{/if}
