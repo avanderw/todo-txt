@@ -7,8 +7,13 @@
     <h1>{$file.name}</h1>
     <h2>Number of todos: {$todoItems.length}</h2>
     {#each $todoItems as todo}
-        <p>{todo.render()}</p>
+        <p class:complete={todo.isComplete()}>{todo.render()}</p>
     {/each}
 {/if}
 
+<style>
+    .complete {
+        text-decoration: line-through;
+    }
+</style>
 
