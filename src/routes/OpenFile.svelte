@@ -1,8 +1,8 @@
 <script>
-    // @ts-nocheck
+	// @ts-nocheck
 	import { browser } from '$app/environment';
-    import { file, todoTxt, todoItems } from '$lib/stores';
-    import { TodoTxt } from '$lib/todotxt';
+	import { file, todoTxt, todoItems } from '$lib/stores';
+	import { TodoTxt } from '$lib/todotxt';
 
 	let info;
 	if (browser && 'showOpenFilePicker' in window) {
@@ -11,7 +11,7 @@
 		info = 'showOpenFilePicker is not supported, use an alternative';
 	}
 
-    let fileHandle;
+	let fileHandle;
 	async function openFile() {
 		[fileHandle] = await window.showOpenFilePicker({ multiple: false });
 		readFile(fileHandle);
@@ -32,24 +32,30 @@
 			e.preventDefault();
 			e.stopPropagation();
 			$file = e.dataTransfer.files[0];
-            fileHandle = await e.dataTransfer.items[0].getAsFileSystemHandle();
+			fileHandle = await e.dataTransfer.items[0].getAsFileSystemHandle();
 			readFile(fileHandle);
 		});
 	}
 
-    async function saveFile() {
-        const writable = await fileHandle.createWritable();
-        await writable.write($todoItems.map((item) => item.render()).join("\n")+"\n");
-        await writable.close();
-        readFile(fileHandle);
-    }
+	async function saveFile() {
+		const content =
+			$todoTxt
+				.items()
+				.map((item) => item.render())
+				.sort((a, b) => a.localeCompare(b))
+				.join('\n') + '\n';
+		const writable = await fileHandle.createWritable();
+		await writable.write(content);
+		await writable.close();
+		readFile(fileHandle);
+	}
 
-    async function readFile(fileHandle) {
-        $file = await fileHandle.getFile();
-        let text = await $file.text();
-        $todoTxt = TodoTxt.parseFile(text);
-        $todoItems = $todoTxt.items();
-    }
+	async function readFile(fileHandle) {
+		$file = await fileHandle.getFile();
+		let text = await $file.text();
+		$todoTxt = TodoTxt.parseFile(text);
+		$todoItems = $todoTxt.items().sort((a, b) => a.render().localeCompare(b.render()));
+	}
 </script>
 
 <p>{info}</p>
