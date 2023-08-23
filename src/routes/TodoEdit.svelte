@@ -15,8 +15,15 @@
         $editTodo = null;
         $status = "Todo updated";
     }
+
+    function cancelEdit(e) {
+        if (e.key === "Escape") {
+            value = null;
+            $editTodo = null;
+        }
+    }
 </script>
 
 <form on:submit={updateTodo}>
-	<input type="text" bind:value /> <button type="submit" disabled={!$editTodo}>save</button>
+	<input type="text" on:keyup={cancelEdit} bind:value disabled={!$editTodo}/> <button type="submit" disabled={!$editTodo}>save</button>
 </form>

@@ -11,7 +11,7 @@
         $status = "Todo added";
     }
 
-    function clearAdd(e) {
+    function cancelAdd(e) {
         if (e.key === "Escape") {
             value = "";
         }
@@ -19,6 +19,6 @@
 </script>
 
 <form on:submit={addTodo}>
-    <input type="text" on:keyup={clearAdd} bind:value />
+    <input type="text" on:keyup={cancelAdd} bind:value />
     <button type="submit" disabled={!value}>add</button>
 </form>
