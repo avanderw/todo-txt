@@ -1,7 +1,7 @@
 <script>
     // @ts-nocheck
 	import { browser } from '$app/environment';
-    import { file, fileHandle } from '$lib/stores';
+    import { file } from '$lib/stores';
 
 	let info;
 	if (browser && 'showOpenFilePicker' in window) {
@@ -10,10 +10,11 @@
 		info = 'showOpenFilePicker is not supported, use an alternative';
 	}
 
+    let fileHandle;
 	let text;
 	async function openFile() {
-		[$fileHandle] = await window.showOpenFilePicker({ multiple: false });
-		$file = await $fileHandle.getFile();
+		[fileHandle] = await window.showOpenFilePicker({ multiple: false });
+		$file = await fileHandle.getFile();
 		text = await $file.text();
 	}
 
@@ -32,26 +33,20 @@
 			e.preventDefault();
 			e.stopPropagation();
 			$file = e.dataTransfer.files[0];
-            $fileHandle = await e.dataTransfer.items[0].getAsFileSystemHandle();
+            fileHandle = await e.dataTransfer.items[0].getAsFileSystemHandle();
 			text = await $file.text();
 		});
 	}
 
     async function saveFile() {
-        const writable = await $fileHandle.createWritable();
+        const writable = await fileHandle.createWritable();
         await writable.write(text);
         await writable.close();
     }
 </script>
 
 <p>{info}</p>
-{#if file}
-	<ul>
-		<li>{file.lastModifiedDate}</li>
-		<li>{file.name}</li>
-		<li>{file.size}</li>
-		<li>{file.type}</li>
-	</ul>
+{#if text}
 	<p>{text}</p>
 {/if}
 
