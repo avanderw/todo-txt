@@ -1,7 +1,8 @@
 <script>
     // @ts-nocheck
 	import { browser } from '$app/environment';
-    import { file } from '$lib/stores';
+    import { file, todos } from '$lib/stores';
+    import { TodoTxt } from '$lib/todotxt';
 
 	let info;
 	if (browser && 'showOpenFilePicker' in window) {
@@ -11,11 +12,11 @@
 	}
 
     let fileHandle;
-	let text;
 	async function openFile() {
 		[fileHandle] = await window.showOpenFilePicker({ multiple: false });
 		$file = await fileHandle.getFile();
-		text = await $file.text();
+		let text = await $file.text();
+        $todos = TodoTxt.parseFile(text);
 	}
 
 	if (browser) {
@@ -34,7 +35,8 @@
 			e.stopPropagation();
 			$file = e.dataTransfer.files[0];
             fileHandle = await e.dataTransfer.items[0].getAsFileSystemHandle();
-			text = await $file.text();
+			let text = await $file.text();
+            $todos = TodoTxt.parseFile(text);
 		});
 	}
 
@@ -46,9 +48,6 @@
 </script>
 
 <p>{info}</p>
-{#if text}
-	<p>{text}</p>
-{/if}
 
 <button on:click={openFile}>open</button>
 <button on:click={saveFile}>save</button>

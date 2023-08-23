@@ -1,6 +1,6 @@
 
 
-var TodoTxt = (function () {
+export var TodoTxt = (function () {
   var SORT_ASC = 'asc';
   var SORT_DESC = 'desc';
   var reTrim = /^\s+|\s+$/g;
