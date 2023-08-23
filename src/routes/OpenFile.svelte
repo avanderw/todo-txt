@@ -14,7 +14,7 @@
 	let fileHandle;
 	async function openFile() {
 		[fileHandle] = await window.showOpenFilePicker({ multiple: false });
-		readFile(fileHandle);
+		readFile();
 	}
 
 	if (browser) {
@@ -33,11 +33,11 @@
 			e.stopPropagation();
 			$file = e.dataTransfer.files[0];
 			fileHandle = await e.dataTransfer.items[0].getAsFileSystemHandle();
-			readFile(fileHandle);
+			readFile();
 		});
 	}
 
-	async function readFile(fileHandle) {
+	async function readFile() {
 		$file = await fileHandle.getFile();
 		let text = await $file.text();
 		$todoTxt = TodoTxt.parseFile(text);
@@ -55,7 +55,7 @@
 		const writable = await fileHandle.createWritable();
 		await writable.write(content);
 		await writable.close();
-		readFile(fileHandle);
+		readFile();
         info = "File saved";
 	}
 
@@ -72,5 +72,6 @@
 
 <p>{info}</p>
 
+<button on:click={readFile}>reload</button>
 <button on:click={openFile}>open</button>
 <button on:click={saveFile}>save</button>
