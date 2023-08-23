@@ -1,13 +1,13 @@
 <script>
 	// @ts-nocheck
-	import { file, todoItems, editTodo } from '$lib/stores';
+	import { file, todoTxt, todoItems, editTodo } from '$lib/stores';
 	import TodoComplete from './TodoComplete.svelte';
 	import TodoDelete from './TodoDelete.svelte';
 </script>
 
 {#if $todoItems}
 	<h1>{$file.name}</h1>
-	<h2>Number of todos: {$todoItems.length}</h2>
+	<h2>Showing {$todoItems.length} of {$todoTxt.length} todos</h2>
 	{#each $todoItems as todo}
 		<p>
 			<TodoComplete {todo} />
