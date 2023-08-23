@@ -37,6 +37,14 @@
 		});
 	}
 
+	async function readFile(fileHandle) {
+		$file = await fileHandle.getFile();
+		let text = await $file.text();
+		$todoTxt = TodoTxt.parseFile(text);
+		$todoItems = $todoTxt.items().sort((a, b) => a.render().localeCompare(b.render()));
+        $filter = null;
+	}
+
 	async function saveFile() {
 		const content =
 			$todoTxt
@@ -48,15 +56,18 @@
 		await writable.write(content);
 		await writable.close();
 		readFile(fileHandle);
+        info = "File saved";
 	}
 
-	async function readFile(fileHandle) {
-		$file = await fileHandle.getFile();
-		let text = await $file.text();
-		$todoTxt = TodoTxt.parseFile(text);
-		$todoItems = $todoTxt.items().sort((a, b) => a.render().localeCompare(b.render()));
-        $filter = null;
-	}
+    if (browser) {
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 's' && e.ctrlKey) {
+                e.preventDefault();
+                saveFile();
+            }
+        });
+    }
+
 </script>
 
 <p>{info}</p>
