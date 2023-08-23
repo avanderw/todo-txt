@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
 	import { browser } from '$app/environment';
-	import { file, todoTxt, todoItems, filter } from '$lib/stores';
+	import { file, todoTxt } from '$lib/stores';
 	import { TodoTxt } from '$lib/todotxt';
 
 	let info;
@@ -41,8 +41,6 @@
 		$file = await fileHandle.getFile();
 		let text = await $file.text();
 		$todoTxt = TodoTxt.parseFile(text);
-		$todoItems = $todoTxt.items().sort((a, b) => a.render().localeCompare(b.render()));
-        $filter = null;
 	}
 
 	async function saveFile() {

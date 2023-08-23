@@ -6,12 +6,12 @@
 
 	function completeTask(todo) {
 		todo.completeTask();
-		$todoItems = $todoItems.sort((a, b) => a.render().localeCompare(b.render()));
+        $todoItems = $todoItems;
 	}
 
 	function uncompleteTask(todo) {
 		todo.uncompleteTask();
-		$todoItems = $todoItems.sort((a, b) => a.render().localeCompare(b.render()));
+        $todoItems = $todoItems;
 	}
 </script>
 

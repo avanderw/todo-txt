@@ -1,6 +1,5 @@
 2023-08-23 Add the ability to edit todo items
 2023-08-23 Add the ability to set priority
-2023-08-23 Move the filter to apply on the item list
 2023-08-23 Refactor status message into a component
 2023-08-23 Remap priority to user set values
 x 2023-08-23 2023-08-23 Add refresh button to reload the file
@@ -8,3 +7,4 @@ x 2023-08-23 2023-08-23 Add the ability to add new todo items
 x 2023-08-23 2023-08-23 Add the ability to delete todo items
 x 2023-08-23 2023-08-23 Clear the filter input when saving a file
 x 2023-08-23 2023-08-23 Map CTRL+S to save button
+x 2023-08-23 2023-08-23 Move the filter to apply on the item list
