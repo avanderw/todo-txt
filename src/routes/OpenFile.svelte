@@ -1,6 +1,7 @@
 <script>
-	// @ts-nocheck
+    // @ts-nocheck
 	import { browser } from '$app/environment';
+    import { file, fileHandle } from '$lib/stores';
 
 	let info;
 	if (browser && 'showOpenFilePicker' in window) {
@@ -9,13 +10,11 @@
 		info = 'showOpenFilePicker is not supported, use an alternative';
 	}
 
-    let fileHandle;
-	let file;
 	let text;
 	async function openFile() {
-		[fileHandle] = await window.showOpenFilePicker({ multiple: false });
-		file = await fileHandle.getFile();
-		text = await file.text();
+		[$fileHandle] = await window.showOpenFilePicker({ multiple: false });
+		$file = await $fileHandle.getFile();
+		text = await $file.text();
 	}
 
 	if (browser) {
@@ -32,15 +31,14 @@
 			body.classList.remove('dragover');
 			e.preventDefault();
 			e.stopPropagation();
-			file = e.dataTransfer.files[0];
-            fileHandle = await e.dataTransfer.items[0].getAsFileSystemHandle();
-			console.log(file);
-			text = await file.text();
+			$file = e.dataTransfer.files[0];
+            $fileHandle = await e.dataTransfer.items[0].getAsFileSystemHandle();
+			text = await $file.text();
 		});
 	}
 
     async function saveFile() {
-        const writable = await fileHandle.createWritable();
+        const writable = await $fileHandle.createWritable();
         await writable.write(text);
         await writable.close();
     }
