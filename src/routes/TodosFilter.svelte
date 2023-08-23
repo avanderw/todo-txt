@@ -2,19 +2,28 @@
 	//@ts-nocheck
 	import { todoItems, todoTxt, filter } from '$lib/stores';
 
-	function filterItems() {
-		$todoItems = $todoTxt.items().filter((item) => item.render().includes($filter));
+	function filterTodos(value) {
+		if ($todoTxt) {
+			if (value) {
+				$todoItems = $todoTxt.items().filter((item) => item.render().includes($filter));
+			} else {
+				$todoItems = $todoTxt.items();
+			}
+		}
 	}
 
-	function clearFilter() {
-		$filter = null;
-		$todoItems = $todoTxt.items();
-	}
+	filter.subscribe((value) => {
+		filterTodos(value);
+	});
+
+	todoTxt.subscribe((value) => {
+		filterTodos($filter);
+	});
 </script>
 
 <form>
-	<span>filter</span> <input on:keyup={filterItems} type="text" bind:value={$filter} />
+	<span>filter</span> <input type="text" bind:value={$filter} />
 	{#if $filter}
-		<button on:click={clearFilter}>clear filter</button>
+		<button on:click={() => ($filter = null)}>clear filter</button>
 	{/if}
 </form>
