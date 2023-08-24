@@ -20,4 +20,3 @@
 <TodoAdd />
 <TodoEdit />
 <TodosView />
-<FileInfo />

@@ -4,6 +4,6 @@
 </script>
 
 {#if $file}
-	<h1>{$file.name}</h1>
-	<span>Last modified: {$file.lastModifiedDate.toDateString()}</span>
+	<span style="font-size:larger">{$file.name}</span><br/>
+	<i style="font-size:smaller; font-weight: normal">Last modified: {$file.lastModifiedDate.toDateString()}</i>
 {/if}
