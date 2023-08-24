@@ -4,7 +4,7 @@
 	import TodoComplete from './TodoComplete.svelte';
 	import TodoDelete from './TodoDelete.svelte';
 
-	let hide = false;
+	let hide = true;
 </script>
 
 {#if $todoItems}
