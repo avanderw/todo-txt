@@ -4,6 +4,7 @@
 	import FileInfo from './FileInfo.svelte';
 	import TodoComplete from './TodoComplete.svelte';
 	import TodoDelete from './TodoDelete.svelte';
+	import TodoEdit from './TodoEdit.svelte';
 
 	let hide = true;
 
@@ -14,7 +15,7 @@
 	<table cellspacing="0">
 		<thead
 			><tr
-				><th colspan="3" style="text-align: left; padding: 1em 0;"
+				><th colspan="3" style="text-align: left;"
 					>Showing {$todoItems.length -
 						(hide ? $todoItems.filter((t) => t.isComplete()).length : 0)} of
 					{$todoTxt.length}
@@ -24,7 +25,8 @@
 						{:else}
 							<EyeIcon size="18" />
 						{/if}
-					</button>{$todoItems.filter((t) => t.isComplete()).length} complete)</th
+					</button>{$todoItems.filter((t) => t.isComplete()).length} complete)
+					<TodoEdit /></th
 				></tr
 			></thead
 		>
@@ -46,7 +48,10 @@
 				</tr>
 			{/if}
 		{/each}
-		<tfoot><tr style="text-align:right"><th colspan="3" style="padding: 1em 0"><FileInfo /></th></tr></tfoot>
+		<tfoot
+			><tr style="text-align:right"><th colspan="3" style="padding: 1em 0"><FileInfo /></th></tr
+			></tfoot
+		>
 	</table>
 {/if}
 
