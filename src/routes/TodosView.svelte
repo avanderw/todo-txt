@@ -39,6 +39,11 @@
 {/if}
 
 <style>
+	button {
+		border: none;
+		background: none;
+		cursor: pointer;
+	}
 	.complete {
 		text-decoration: line-through;
 	}
