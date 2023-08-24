@@ -9,5 +9,7 @@
         $todoTxt = $todoTxt;
         $status = "Todo deleted";
     }
+
+    import { Trash2Icon } from "svelte-feather-icons";
 </script>
-<button on:click={deleteTodo}>delete</button>
+<button on:click={deleteTodo}><Trash2Icon /></button>

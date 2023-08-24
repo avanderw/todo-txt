@@ -15,10 +15,12 @@
 		$todoItems = $todoItems;
 		$status = 'Todo uncompleted';
 	}
+
+    import { CheckCircleIcon, CircleIcon } from "svelte-feather-icons";
 </script>
 
 {#if todo.isComplete()}
-	<button on:click={uncompleteTask(todo)}>uncomplete</button>
+	<button on:click={uncompleteTask(todo)}><CheckCircleIcon /></button>
 {:else}
-	<button on:click={completeTask(todo)}>complete</button>
+	<button on:click={completeTask(todo)}><CircleIcon /></button>
 {/if}

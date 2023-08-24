@@ -22,8 +22,10 @@
             $editTodo = null;
         }
     }
+
+    import {EditIcon} from "svelte-feather-icons";
 </script>
 
 <form on:submit={updateTodo}>
-	<input type="text" on:keyup={cancelEdit} bind:value disabled={!$editTodo}/> <button type="submit" disabled={!$editTodo}>save</button>
+	<input type="text" on:keyup={cancelEdit} bind:value disabled={!$editTodo}/> <button type="submit" disabled={!$editTodo}><EditIcon /></button>
 </form>

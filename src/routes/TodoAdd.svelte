@@ -16,9 +16,11 @@
             value = "";
         }
     }
+
+    import { PlusCircleIcon } from 'svelte-feather-icons';
 </script>
 
 <form on:submit={addTodo}>
     <input type="text" on:keyup={cancelAdd} bind:value />
-    <button type="submit" disabled={!value}>add</button>
+    <button type="submit" disabled={!value}><PlusCircleIcon /></button>
 </form>

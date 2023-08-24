@@ -71,8 +71,10 @@
 			return 'Are you sure you want to leave?';
 		};
 	}
+
+    import { SaveIcon, RefreshCwIcon, UploadIcon } from 'svelte-feather-icons';
 </script>
 
-<button on:click={readFile}>reload</button>
-<button on:click={openFile}>open</button>
-<button on:click={saveFile}>save</button>
+<button on:click={readFile}><RefreshCwIcon /></button>
+<button on:click={openFile}><UploadIcon /></button>
+<button on:click={saveFile}><SaveIcon /></button>
