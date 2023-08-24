@@ -26,11 +26,10 @@
 		}
 	}
 
-	import { FilterIcon, XCircleIcon } from 'svelte-feather-icons';
+	import { XCircleIcon } from 'svelte-feather-icons';
 </script>
 
 <form>
-    <FilterIcon />
-	<input type="text" on:keyup={cancelFilter} bind:value={$filter} />
+	<input type="text" on:keyup={cancelFilter} bind:value={$filter} disabled={!$todoTxt}/>
 	<button on:click={() => ($filter = null)} disabled={!$filter}><XCircleIcon /></button>
 </form>
