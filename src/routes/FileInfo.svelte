@@ -1,15 +1,9 @@
 <script>
-    // @ts-nocheck
-    import { file } from '$lib/stores';
-
+	// @ts-nocheck
+	import { file } from '$lib/stores';
 </script>
 
 {#if $file}
-    <ul>
-        <li>{$file.lastModifiedDate}</li>
-        <li>{$file.name}</li>
-        <li>{$file.size}</li>
-        <li>{$file.type}</li>
-    </ul>
+	<h1>{$file.name}</h1>
+	<span>Last modified: {$file.lastModifiedDate.toDateString()}</span>
 {/if}
-

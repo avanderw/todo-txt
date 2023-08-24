@@ -1,6 +1,6 @@
 <script>
 	// @ts-nocheck
-	import { file, todoTxt, todoItems, editTodo } from '$lib/stores';
+	import { todoTxt, todoItems, editTodo } from '$lib/stores';
 	import TodoComplete from './TodoComplete.svelte';
 	import TodoDelete from './TodoDelete.svelte';
 
@@ -10,7 +10,6 @@
 </script>
 
 {#if $todoItems}
-	<h1>{$file.name}</h1>
 	<h2>
 		Showing {$todoItems.length - (hide ? $todoItems.filter((t) => t.isComplete()).length : 0)} of {$todoTxt.length}
 		todos ({$todoItems.filter((t) => t.isComplete()).length} complete
