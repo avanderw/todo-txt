@@ -75,6 +75,6 @@
     import { SaveIcon, RefreshCwIcon, UploadIcon } from 'svelte-feather-icons';
 </script>
 
-<button on:click={readFile}><RefreshCwIcon /></button>
 <button on:click={openFile}><UploadIcon /></button>
-<button on:click={saveFile}><SaveIcon /></button>
+<button on:click={readFile} disabled={!fileHandle}><RefreshCwIcon /></button>
+<button on:click={saveFile} disabled={!fileHandle}><SaveIcon /></button>
