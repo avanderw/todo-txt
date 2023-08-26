@@ -1,11 +1,11 @@
 <script>
 	// @ts-nocheck
-	import { todoItems, filter } from '$lib/stores';
+	import { todoTxt, filter } from '$lib/stores';
 
 	let contexts = [];
 
-	todoItems.subscribe((value) => {
-		if (value) contexts = value.map((todo) => todo.contexts()).flat();
+	todoTxt.subscribe((value) => {
+		if (value) contexts = value.items().map((todo) => todo.contexts()).flat();
 	});
 
 	function filterContext(context) {
@@ -19,6 +19,11 @@
 	}
 </script>
 
-{#each contexts as context}
-	<button on:click={filterContext(context)}>{context}</button>
-{/each}
+{#if contexts.length > 0}
+	<p>
+		Contexts:
+		{#each contexts as context}
+			<button on:click={filterContext(context)}>{context}</button>
+		{/each}
+	</p>
+{/if}

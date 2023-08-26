@@ -1,6 +1,6 @@
 <script>
 	// @ts-nocheck
-	import { todoTxt, todoItems, editTodo } from '$lib/stores';
+	import { todoTxt, todoItems, editTodo, filter } from '$lib/stores';
 	import FileInfo from './FileInfo.svelte';
 	import TodoComplete from './TodoComplete.svelte';
 	import TodoDelete from './TodoDelete.svelte';
@@ -48,6 +48,12 @@
 				</tr>
 			{/if}
 		{/each}
+		{#if $todoItems.length === 0}
+			<tr>
+				<td colspan="3" style="text-align: center; background-color: #fff;">No todos
+					{#if $filter}<button on:click={()=>$filter=null}>clear filter</button>{/if}</td>
+			</tr>
+		{/if}
 		<tfoot
 			><tr style="text-align:right"><th colspan="3" style="padding: 1em 0"><FileInfo /></th></tr
 			></tfoot

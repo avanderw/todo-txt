@@ -31,5 +31,13 @@
 
 <form>
 	<input type="text" on:keyup={cancelFilter} bind:value={$filter} disabled={!$todoTxt}/>
-	<button on:click={() => ($filter = null)} disabled={!$filter}><XCircleIcon /></button>
+	<button on:click={() => ($filter = null)} disabled={!$filter}><XCircleIcon size="18"/></button>
 </form>
+
+<style>
+    button {
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+</style>
