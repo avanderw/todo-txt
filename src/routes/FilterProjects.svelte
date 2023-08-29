@@ -20,7 +20,7 @@
 </script>
 
 {#if projects.length > 0}
-	<p>Projects:
+	<p>
 	{#each projects as project}
 		<button on:click={filterProjects(project)}>{project}</button>
 	{/each}

@@ -24,3 +24,27 @@
     <input type="text" on:keyup={cancelAdd} bind:value disabled={!$todoTxt} />
     <button type="submit" disabled={!value}><PlusCircleIcon /></button>
 </form>
+
+<style>
+	button {
+		border: none;
+		background: none;
+		cursor: pointer;
+	}
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+    }
+    input {
+        border: none;
+        border: 1px solid #000;
+        padding: 0.2rem;
+        margin: 0.5rem 0;
+        width: 90%;
+    }
+    input:disabled {
+        background: #eee;
+        border-bottom: 1px solid #ddd;
+    }
+</style>

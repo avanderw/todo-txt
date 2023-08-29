@@ -28,9 +28,8 @@
 	}
 </script>
 
-{#if priority.length > 0}
+{#if priority && priority.length > 0}
 	<p>
-		Priority:
 		{#each priority as pri}
 			<button on:click={filterPriority(pri)}>{pri}</button>
 		{/each}

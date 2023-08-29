@@ -41,6 +41,18 @@
 		let text = await $file.text();
 		$todoTxt = TodoTxt.parseFile(text);
 		$status = 'File loaded';
+		autoRefresh();
+	}
+
+	async function autoRefresh() {
+		if (!fileHandle) return;
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+		let refresh = await fileHandle.getFile();
+		if (refresh.lastModified > $file.lastModified) {
+			readFile();
+		} else {
+			autoRefresh();
+		}
 	}
 
 	async function saveFile() {
@@ -72,9 +84,9 @@
 		};
 	}
 
-    import { SaveIcon, RefreshCwIcon, UploadIcon } from 'svelte-feather-icons';
+	import { SaveIcon, RefreshCwIcon, UploadIcon } from 'svelte-feather-icons';
 </script>
 
-<button on:click={openFile}><UploadIcon /></button>
-<button on:click={readFile} disabled={!fileHandle}><RefreshCwIcon /></button>
-<button on:click={saveFile} disabled={!fileHandle}><SaveIcon /></button>
+<button on:click={openFile}><UploadIcon size="18" /></button>
+<button on:click={readFile} disabled={!fileHandle}><RefreshCwIcon size="18" /></button>
+<button on:click={saveFile} disabled={!fileHandle}><SaveIcon size="18" /></button>

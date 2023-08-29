@@ -21,7 +21,6 @@
 
 {#if contexts.length > 0}
 	<p>
-		Contexts:
 		{#each contexts as context}
 			<button on:click={filterContext(context)}>{context}</button>
 		{/each}
