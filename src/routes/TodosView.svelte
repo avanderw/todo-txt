@@ -2,6 +2,7 @@
 	// @ts-nocheck
 	import { todoTxt, todoItems, editTodo, filter } from '$lib/stores';
 	import FileInfo from './FileInfo.svelte';
+	import Priority from './Priority.svelte';
 	import TodoAdd from './TodoAdd.svelte';
 	import TodoComplete from './TodoComplete.svelte';
 	import TodoDelete from './TodoDelete.svelte';
@@ -16,7 +17,7 @@
 	<table cellspacing="0">
 		<thead
 			><tr
-				><th colspan="3" style="text-align: left;"
+				><th colspan="4" style="text-align: left;"
 					>Showing {$todoItems.length -
 						(hide ? $todoItems.filter((t) => t.isComplete()).length : 0)} of
 					{$todoTxt.length}
@@ -46,17 +47,19 @@
 					<td>
 						<TodoDelete {todo} />
 					</td>
+					<td><Priority {todo} /></td>
 				</tr>
 			{/if}
 		{/each}
 		{#if $todoItems.length === 0}
 			<tr>
-				<td colspan="3" style="text-align: center; background-color: #fff;">No todos
-					{#if $filter}<button on:click={()=>$filter=null}>clear filter</button>{/if}</td>
+				<td colspan="4" style="text-align: center; background-color: #fff;"
+					>No todos
+					{#if $filter}<button on:click={() => ($filter = null)}>clear filter</button>{/if}</td
+				>
 			</tr>
 		{/if}
-		<tr><td colspan="3" style="background-color:white">
-			<TodoAdd /></td></tr>
+		<tr><td colspan="4" style="background-color:white"> <TodoAdd /></td></tr>
 		<tfoot
 			><tr style="text-align:right"><th colspan="3" style="padding: 1em 0"><FileInfo /></th></tr
 			></tfoot

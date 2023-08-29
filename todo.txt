@@ -1,5 +1,6 @@
 (A) 2023-08-23 Style the application
 2023-08-23 Remap priority to user set values
+(A) 2023-08-29 I want to have session resumption (local storage)
 x 2023-08-23 (A) 2023-08-23 Add check when modified and leaving browser tab
 x 2023-08-23 (A) 2023-08-23 Hide completed items
 x 2023-08-23 (B) 2023-08-23 Add support for +projects
