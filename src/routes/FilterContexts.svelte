@@ -5,7 +5,13 @@
 	let contexts = [];
 
 	todoTxt.subscribe((value) => {
-		if (value) contexts = value.items().map((todo) => todo.contexts()).flat();
+		if (value)
+			contexts = value
+				.items()
+				.map((todo) => todo.contexts())
+				.filter((context) => context.length > 0)
+				.flat()
+				.filter((context, index, self) => self.indexOf(context) === index);
 	});
 
 	function filterContext(context) {
