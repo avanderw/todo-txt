@@ -21,7 +21,7 @@
 </script>
 
 <form on:submit={addTodo}>
-    <input type="text" on:keyup={cancelAdd} bind:value disabled={!$todoTxt} />
+    <input type="text" on:keyup={cancelAdd} bind:value disabled={!$todoTxt} placeholder="Enter a new todo..."/>
     <button type="submit" disabled={!value}><PlusCircleIcon /></button>
 </form>
 

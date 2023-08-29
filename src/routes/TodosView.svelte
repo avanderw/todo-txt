@@ -11,27 +11,28 @@
 	let hide = true;
 
 	import { EyeIcon, EyeOffIcon } from 'svelte-feather-icons';
+	import TodosFilter from './TodosFilter.svelte';
 </script>
 
 {#if $todoItems}
 	<table cellspacing="0">
 		<thead
 			><tr
-				><th colspan="4" style="text-align: left;"
+				><th colspan="2" style="text-align: left;"
 					>Showing {$todoItems.length -
 						(hide ? $todoItems.filter((t) => t.isComplete()).length : 0)} of
-					{$todoTxt.length}
-					todos (<button on:click={() => (hide = !hide)}>
+					{$todoTxt.length} todos
+					<button on:click={() => (hide = !hide)}>
 						{#if hide}
 							<EyeOffIcon size="18" />
 						{:else}
 							<EyeIcon size="18" />
 						{/if}
-					</button>{$todoItems.filter((t) => t.isComplete()).length} complete)
-					<TodoEdit /></th
-				></tr
+					</button>
+				</th><th colspan="2"><TodosFilter /></th></tr
 			></thead
 		>
+		<tr style="background-color: #fff;"><td colspan="4" /></tr>
 		{#each $todoItems as todo}
 			{#if !hide || !todo.isComplete()}
 				<tr>
@@ -59,9 +60,10 @@
 				>
 			</tr>
 		{/if}
-		<tr><td colspan="4" style="background-color:white"> <TodoAdd /></td></tr>
+		<tr style="background-color: #fff;"><td colspan="4"><TodoEdit /></td></tr>
+		<tr style="background-color: #fff;"><td colspan="4"> <TodoAdd /></td></tr>
 		<tfoot
-			><tr style="text-align:right"><th colspan="3" style="padding: 1em 0"><FileInfo /></th></tr
+			><tr style="text-align:right"><th colspan="4" style="padding: 1em 0"><FileInfo /></th></tr
 			></tfoot
 		>
 	</table>

@@ -1,6 +1,5 @@
 (A) 2023-08-23 Style the application
 (B) 2023-08-23 Remap priority to user set values
-(A) 2023-08-29 I want to have session resumption (local storage)
 (C) 2023-08-29 I want to see a style difference between priorities
 x 2023-08-23 (A) 2023-08-23 Add check when modified and leaving browser tab
 x 2023-08-23 (A) 2023-08-23 Hide completed items

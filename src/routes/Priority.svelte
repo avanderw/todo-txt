@@ -42,3 +42,13 @@
 <button on:click={decrPri}><ChevronUpIcon size="18" /></button>
 <button on:click={incrPri}><ChevronDownIcon size="18" /></button>
 <button on:click={rmPri}><XCircleIcon size="18" /></button>
+
+<style>
+	button {
+		border: none;
+		background: none;
+		cursor: pointer;
+		margin: 0;
+		padding: 0;
+	}
+</style>

@@ -30,8 +30,8 @@
 </script>
 
 <form>
-	<input type="text" on:keyup={cancelFilter} bind:value={$filter} disabled={!$todoTxt}/>
-	<button on:click={() => ($filter = null)} disabled={!$filter}><XCircleIcon size="18"/></button>
+	<input type="text" on:keyup={cancelFilter} bind:value={$filter} disabled={!$todoTxt} placeholder="Search..."/>
+	<button on:click={() => ($filter = null)} disabled={!$filter}><XCircleIcon size="24"/></button>
 </form>
 
 <style>
@@ -40,5 +40,21 @@
         background: none;
         cursor: pointer;
         padding: 0;
+    }
+	form {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+    }
+    input {
+        border: none;
+        border-bottom: 1px solid #000;
+        padding: 0.2rem;
+        margin: 0.5rem 0;
+		width: 5.5rem;
+    }
+    input:disabled {
+        background: #eee;
+        border-bottom: 1px solid #ddd;
     }
 </style>

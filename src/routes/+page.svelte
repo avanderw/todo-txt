@@ -13,5 +13,4 @@
 <FilterPriorities />
 <FilterContexts />
 <FilterProjects />
-<TodosFilter />
 <TodosView />
