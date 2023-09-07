@@ -45,6 +45,7 @@
     }
     input:disabled {
         background: #eee;
+        border:none;
         border-bottom: 1px solid #ddd;
     }
 </style>

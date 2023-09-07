@@ -1,4 +1,5 @@
 (A) 2023-08-23 Style the application
+(A) 2023-09-07 Change focus to the edit bar when editing a todo
 (B) 2023-08-23 Remap priority to user set values
 (C) 2023-08-29 I want to see a style difference between priorities
 x 2023-08-23 (A) 2023-08-23 Add check when modified and leaving browser tab
