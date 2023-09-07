@@ -12,62 +12,65 @@
 
 	import { EyeIcon, EyeOffIcon } from 'svelte-feather-icons';
 	import TodosFilter from './TodosFilter.svelte';
+
+	$: totalFilter = $todoItems ? $todoItems.length : 0;
+	$: complete = (hide && $todoItems ? $todoItems.filter((t) => t.isComplete()).length : 0);
+	$: total = $todoTxt ? $todoTxt.length : 0;
 </script>
 
-{#if $todoItems}
-	<table cellspacing="0">
-		<thead
-			><tr
-				><th colspan="2" style="text-align: left;"
-					>Showing {$todoItems.length -
-						(hide ? $todoItems.filter((t) => t.isComplete()).length : 0)} of
-					{$todoTxt.length} todos
-					<button on:click={() => (hide = !hide)}>
-						{#if hide}
-							<EyeOffIcon size="18" />
-						{:else}
-							<EyeIcon size="18" />
-						{/if}
-					</button>
-				</th><th colspan="2"><TodosFilter /></th></tr
-			></thead
-		>
-		<tr style="background-color: #fff;"><td colspan="4" /></tr>
-		{#each $todoItems as todo}
-			{#if !hide || !todo.isComplete()}
-				<tr>
-					<td> <TodoComplete {todo} /></td>
-					<td
-						><button
-							on:click={() => {
-								$editTodo = todo;
-							}}
-							class:complete={todo.isComplete()}>{todo.render()}</button
-						></td
-					>
-					<td>
-						<TodoDelete {todo} />
-					</td>
-					<td><Priority {todo} /></td>
-				</tr>
-			{/if}
-		{/each}
-		{#if $todoItems.length === 0}
+<table cellspacing="0">
+	<thead
+		><tr
+			><th colspan="2" style="text-align: left;"
+				>Showing {totalFilter - complete} of
+				{total} todos
+				<button on:click={() => (hide = !hide)}>
+					{#if hide}
+						<EyeOffIcon size="18" />
+					{:else}
+						<EyeIcon size="18" />
+					{/if}
+				</button>
+			</th><th colspan="2"><TodosFilter /></th></tr
+		></thead
+	>
+	<tr style="background-color: #fff;"><td colspan="4" /></tr>
+	{#if $todoItems}
+	{#each $todoItems as todo}
+		{#if !hide || !todo.isComplete()}
 			<tr>
-				<td colspan="4" style="text-align: center; background-color: #fff;"
-					>No todos
-					{#if $filter}<button on:click={() => ($filter = null)}>clear filter</button>{/if}</td
+				<td> <TodoComplete {todo} /></td>
+				<td
+					><button
+						on:click={() => {
+							$editTodo = todo;
+						}}
+						class:complete={todo.isComplete()}>{todo.render()}</button
+					></td
 				>
+				<td>
+					<TodoDelete {todo} />
+				</td>
+				<td><Priority {todo} /></td>
 			</tr>
 		{/if}
-		<tr style="background-color: #fff;"><td colspan="4"><TodoEdit /></td></tr>
-		<tr style="background-color: #fff;"><td colspan="4"> <TodoAdd /></td></tr>
-		<tfoot
-			><tr style="text-align:right"><th colspan="4" style="padding: 1em 0"><FileInfo /></th></tr
-			></tfoot
-		>
-	</table>
-{/if}
+	{/each}
+	{/if}
+	{#if $todoItems && $todoItems.length === 0}
+		<tr>
+			<td colspan="4" style="text-align: center; background-color: #fff;"
+				>No todos
+				{#if $filter}<button on:click={() => ($filter = null)}>clear filter</button>{/if}</td
+			>
+		</tr>
+	{/if}
+	<tr style="background-color: #fff;"><td colspan="4"><TodoEdit /></td></tr>
+	<tr style="background-color: #fff;"><td colspan="4"> <TodoAdd /></td></tr>
+	<tfoot
+		><tr style="text-align:right"><th colspan="4" style="padding: 1em 0"><FileInfo /></th></tr
+		></tfoot
+	>
+</table>
 
 <style>
 	button {
