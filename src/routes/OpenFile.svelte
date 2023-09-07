@@ -5,9 +5,9 @@
 	import { TodoTxt } from '$lib/todotxt';
 
 	if (browser && 'showOpenFilePicker' in window) {
-		$status = 'showOpenFilePicker is supported';
+		$status = 'File Picker is supported';
 	} else {
-		$status = 'showOpenFilePicker is not supported, use an alternative';
+		$status = 'File Picker is not supported, use an alternative';
 	}
 
 	let fileHandle;
@@ -84,9 +84,15 @@
 		};
 	}
 
+	$status = "Drag and drop a todo.txt file here";
+
 	import { SaveIcon, RefreshCwIcon, UploadIcon } from 'svelte-feather-icons';
 </script>
 
 <button on:click={openFile}><UploadIcon size="18" /></button>
 <button on:click={readFile} disabled={!fileHandle}><RefreshCwIcon size="18" /></button>
 <button on:click={saveFile} disabled={!fileHandle}><SaveIcon size="18" /></button>
+
+{#if !$todoTxt}
+	No file loaded
+{/if}

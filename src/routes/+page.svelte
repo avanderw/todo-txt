@@ -11,20 +11,28 @@
 	<title>todo.txt web editor</title>
 </svelte:head>
 
-<StatusArea />
-<OpenFile />
+<div class="container">
+	<StatusArea />
+	<OpenFile />
 
-<div><FilterPriorities /></div>
-<div><FilterContexts /></div>
-<div><FilterProjects /></div>
+	<div><FilterPriorities /></div>
+	<div><FilterContexts /></div>
+	<div><FilterProjects /></div>
 
-<TodosView />
+	<TodosView />
+</div>
 
 <style>
-	div { /** valign to center */
+	div {
+		/** valign to center */
 		display: flex;
 		align-items: center;
 		margin: 0.5rem 0;
 	}
 
+	.container {
+		display: block;
+		width: fit-content;
+		margin: 0 auto;
+	}
 </style>
