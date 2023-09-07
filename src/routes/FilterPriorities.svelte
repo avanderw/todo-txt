@@ -1,6 +1,7 @@
 <script>
 	// @ts-nocheck
 	import { todoTxt, filter } from '$lib/stores';
+	import { ChevronsUpIcon } from 'svelte-feather-icons';
 
 	let priority;
 
@@ -26,12 +27,38 @@
 
 		$filter = pri;
 	}
+
+	function moscow(pri) {
+		if (pri === 'A') return 'Must';
+		if (pri === 'B') return 'Should';
+		if (pri === 'C') return 'Could';
+		return pri;
+	}
 </script>
 
+<ChevronsUpIcon size="18"/>
 {#if priority && priority.length > 0}
-	<p>
-		{#each priority as pri}
-			<button on:click={filterPriority(pri)}>{pri}</button>
-		{/each}
-	</p>
+	{#each priority as pri}
+		<button on:click={filterPriority(pri)} class={moscow(pri)}>{moscow(pri)}</button>
+	{/each}
 {/if}
+
+<style>
+	:root {
+		--primary: #6c757d;
+		--secondary: #adb5bd;
+		--accent: #dee2e6;
+	}
+	button + button {
+		margin-left: 0.15rem;
+	}
+	button {
+		border: none;
+		border-radius: 0.2rem;
+		background-color: var(--primary);
+		color: var(--accent);
+		cursor: pointer;
+		padding: 0.15rem 0.3rem;
+		margin-left: 0.5rem;
+	}
+</style>

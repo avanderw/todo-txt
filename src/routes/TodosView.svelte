@@ -34,7 +34,7 @@
 			</th><th colspan="2"><TodosFilter /></th></tr
 		></thead
 	>
-	<tr style="background-color: #fff;"><td colspan="4" /></tr>
+	<tr style="background-color: #fff;"><td colspan="4"> <TodoAdd /></td></tr>
 	{#if $todoItems}
 	{#each $todoItems as todo}
 		{#if !hide || !todo.isComplete()}
@@ -65,7 +65,6 @@
 		</tr>
 	{/if}
 	<tr style="background-color: #fff;"><td colspan="4"><TodoEdit /></td></tr>
-	<tr style="background-color: #fff;"><td colspan="4"> <TodoAdd /></td></tr>
 	<tfoot
 		><tr style="text-align:right"><th colspan="4" style="padding: 1em 0"><FileInfo /></th></tr
 		></tfoot
@@ -73,6 +72,10 @@
 </table>
 
 <style>
+	table {
+		min-width: 33%;
+		border-collapse: collapse;
+	}
 	button {
 		border: none;
 		background: none;

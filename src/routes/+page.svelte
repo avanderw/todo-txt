@@ -13,7 +13,18 @@
 
 <StatusArea />
 <OpenFile />
-<FilterPriorities />
-<FilterContexts />
-<FilterProjects />
+
+<div><FilterPriorities /></div>
+<div><FilterContexts /></div>
+<div><FilterProjects /></div>
+
 <TodosView />
+
+<style>
+	div { /** valign to center */
+		display: flex;
+		align-items: center;
+		margin: 0.5rem 0;
+	}
+
+</style>

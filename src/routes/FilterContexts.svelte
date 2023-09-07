@@ -1,6 +1,7 @@
 <script>
 	// @ts-nocheck
 	import { todoTxt, filter } from '$lib/stores';
+	import { AtSignIcon } from 'svelte-feather-icons';
 
 	let contexts = [];
 
@@ -25,10 +26,24 @@
 	}
 </script>
 
+<AtSignIcon size="18" />
 {#if contexts.length > 0}
-	<p>
-		{#each contexts as context}
-			<button on:click={filterContext(context)}>{context}</button>
-		{/each}
-	</p>
+	{#each contexts as context}
+		<button on:click={filterContext(context)}>{context}</button>
+	{/each}
 {/if}
+
+<style>
+	button + button {
+		margin-left: 0.15rem;
+	}
+	button {
+		border: none;
+		border-radius: 0.2rem;
+		background-color: var(--primary);
+		color: var(--accent);
+		cursor: pointer;
+		padding: 0.15rem 0.3rem;
+		margin-left: 0.5rem;
+	}
+</style>
