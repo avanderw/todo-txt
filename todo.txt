@@ -1,6 +1,10 @@
-(A) 2023-08-23 Style the application
 (A) 2023-09-07 Change focus to the edit bar when editing a todo
+(A) 2023-09-08 Refactor the styling to use the color palette
 (C) 2023-08-29 See a style difference between priorities
+2023-09-13 Hijack CTRL+F to focus on the search bar
+2023-09-13 Make the search case insensitive
+2023-09-13 Move search bar to where the Add bar is
+2023-09-13 Add colour to the due date to be more visible
 x 2023-08-23 (A) 2023-08-23 Add check when modified and leaving browser tab
 x 2023-08-23 (A) 2023-08-23 Hide completed items
 x 2023-08-23 (B) 2023-08-23 Add support for +projects
@@ -14,4 +18,5 @@ x 2023-08-23 2023-08-23 Map CTRL+S to save button
 x 2023-08-23 2023-08-23 Move the filter to apply on the item list
 x 2023-08-23 2023-08-23 Refactor status message into a component
 x 2023-09-07 (B) 2023-08-23 Remap priority to user set values
+x 2023-09-08 (A) 2023-08-23 Style the application
 x 2023-09-08 (A) 2023-09-07 Give the get started action when nothing is loaded
