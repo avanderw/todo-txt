@@ -15,6 +15,10 @@
 			$todoItems.push(newTodo);
 			$todoTxt.addItem(newTodo);
 		}
+
+		if (todo.priority()) {
+			todo.replaceWith(todo.render().replace(`(${todo.priority()})`, '').trim());
+		}
 		todo.completeTask();
 		$todoItems = $todoItems;
 		$status = 'Todo completed';
