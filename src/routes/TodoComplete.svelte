@@ -80,7 +80,9 @@
 						newDate.setDate(date.getDate() + value * 7);
 						break;
 					case '.+':
-						newDate.setDate(new Date(Date.now()).getDate() + value * 7);
+						const next = new Date(Date.now());
+						next.setDate(next.getDate() + value * 7)
+						newDate.setTime(next.getTime());
 						break;
 					case '++':
 						newDate.setDate(newDate.getDate() + value * 7);

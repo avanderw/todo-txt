@@ -28,9 +28,7 @@
 	}
 
 	function focus(node) {
-		console.log("loaded");
 		function keyEvent(event) {
-			console.log(event.code);
 			if (event.code === 'F3' || ((event.ctrlKey || event.metaKey) && event.code === 'KeyF')) {
 				event.preventDefault();
 				node.focus();
