@@ -8,9 +8,3 @@ export const todoItems = writable(null);
 export const filter = writable(null);
 export const editTodo = writable(null);
 export const iconSize = readable(12);
-
-todoItems.subscribe((value) => {
-    if (value) {
-        value.sort((a, b) => a.render().localeCompare(b.render()));
-    }
-});

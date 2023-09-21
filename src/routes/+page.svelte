@@ -6,6 +6,7 @@
 	import FilterProjects from './FilterProjects.svelte';
 	import FilterPriorities from './FilterPriorities.svelte';
 	import ShortcutKeys from './ShortcutKeys.svelte';
+	import Sort from './Sort.svelte';
 </script>
 
 <svelte:head>
@@ -15,6 +16,7 @@
 <div class="container">
 	<StatusArea />
 	<OpenFile />
+	<Sort/>
 
 	<div><FilterPriorities /></div>
 	<div><FilterContexts /></div>
