@@ -6,7 +6,7 @@
 	function filterTodos(value) {
 		if ($todoTxt) {
 			if (value) {
-				$todoItems = $todoTxt.items().filter((item) => item.render().includes($filter));
+				$todoItems = $todoTxt.items().filter((item) => item.render().toLowerCase().includes($filter));
 			} else {
 				$todoItems = $todoTxt.items();
 			}

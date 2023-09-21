@@ -1,7 +1,6 @@
 (A) 2023-09-07 Change focus to the edit bar when editing a todo
 (A) 2023-09-08 Refactor the styling to use the color palette
 (A) 2023-09-13 Add colour to the due date to be more visible
-(A) 2023-09-13 Make the search case insensitive
 (A) 2023-09-13 Move search bar to where the Add bar is
 (A) 2023-09-14 Do not sort when changing priority, it messes with the flow
 (A) 2023-09-19 Recur from now on todo.txt is not working on lunch with Shantelle
@@ -24,3 +23,4 @@ x 2023-09-08 (A) 2023-08-23 Style the application
 x 2023-09-08 (A) 2023-09-07 Give the get started action when nothing is loaded
 x 2023-09-13 2023-09-13 Remove priority when completing todos
 x 2023-09-21 2023-09-13 Hijack CTRL+F to focus on the search bar
+x 2023-09-21 2023-09-13 Make the search case insensitive
