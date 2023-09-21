@@ -1,6 +1,7 @@
 <script>
 	//@ts-nocheck
 	import { todoItems, todoTxt, filter } from '$lib/stores';
+	import { XCircleIcon } from 'svelte-feather-icons';
 
 	function filterTodos(value) {
 		if ($todoTxt) {
@@ -26,11 +27,28 @@
 		}
 	}
 
-	import { XCircleIcon } from 'svelte-feather-icons';
+	function focus(node) {
+		console.log("loaded");
+		function keyEvent(event) {
+			console.log(event.code);
+			if (event.code === 'F3' || ((event.ctrlKey || event.metaKey) && event.code === 'KeyF')) {
+				event.preventDefault();
+				node.focus();
+			}
+		};
+
+		window.addEventListener('keydown', keyEvent);
+
+		return {
+			destroy() {
+				window.removeEventListener('keydown', keyEvent);
+			}
+		};
+	}
 </script>
 
 <form>
-	<input type="text" on:keyup={cancelFilter} bind:value={$filter} disabled={!$todoTxt} placeholder="Search..."/>
+	<input use:focus type="text" on:keyup={cancelFilter} bind:value={$filter} disabled={!$todoTxt} placeholder="Search..."/>
 	<button on:click={() => ($filter = null)} disabled={!$filter}><XCircleIcon size="24"/></button>
 </form>
 
@@ -42,6 +60,7 @@
         padding: 0;
     }
 	form {
+		position: relative;
         display: flex;
         align-items: center;
         justify-content: right;

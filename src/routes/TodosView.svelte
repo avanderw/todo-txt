@@ -11,7 +11,7 @@
 	let hide = true;
 
 	import { EyeIcon, EyeOffIcon } from 'svelte-feather-icons';
-	import TodosFilter from './TodosFilter.svelte';
+	import TodosFilter from './SearchBar.svelte';
 
 	$: totalFilter = $todoItems ? $todoItems.length : 0;
 	$: complete = (hide && $todoItems ? $todoItems.filter((t) => t.isComplete()).length : 0);

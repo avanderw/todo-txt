@@ -5,6 +5,7 @@
 	import FilterContexts from './FilterContexts.svelte';
 	import FilterProjects from './FilterProjects.svelte';
 	import FilterPriorities from './FilterPriorities.svelte';
+	import ShortcutKeys from './ShortcutKeys.svelte';
 </script>
 
 <svelte:head>
@@ -20,6 +21,7 @@
 	<div><FilterProjects /></div>
 
 	<TodosView />
+	<ShortcutKeys />
 </div>
 
 <style>
