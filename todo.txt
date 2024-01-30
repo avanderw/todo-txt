@@ -1,8 +1,16 @@
-(B) 2023-09-08 Refactor the styling to use the color palette
-(B) 2023-09-13 Add colour to the due date to be more visible
-(B) 2023-09-13 Move search bar to where the Add bar is
-(B) 2023-09-19 Multi-file/tab support for the todo.txt editor
-(C) 2023-08-29 See a style difference between priorities
+(A) 2023-09-08 Refactor the styling to use the color palette
+(A) 2023-11-30 Add buttons to change due dates on todos +code
+(Z) 2023-08-29 See a style difference between priorities
+(Z) 2023-09-07 Setup a system notifier for dated todos +code
+(Z) 2023-09-13 Add colour to the due date to be more visible
+(Z) 2023-09-19 Multi-file/tab support for the todo.txt editor
+(Z) 2023-10-17 Have a review for states in waiting without reminders
+(Z) 2023-10-24 Implement autosave
+(Z) 2023-11-07 Hide tickler events optionally with the todo tool +private
+(Z) 2023-11-17 Highlight anything that does not have a due date given a filter on todos +private
+2023-10-17 Update todo.txt editor to handle waiting (W) and someday (Z)
+2023-11-17 Extract challenges, targets, done from notes/todos automatically +private
+2024-01-23 Add a calendar or schedule webview for due items
 x 2023-08-23 (B) 2023-08-23 Add support for +projects
 x 2023-08-23 2023-08-23 Add check when modified and leaving browser tab
 x 2023-08-23 2023-08-23 Add refresh button to reload the file
@@ -24,3 +32,6 @@ x 2023-09-21 2023-09-13 Hijack CTRL+F to focus on the search bar
 x 2023-09-21 2023-09-13 Make the search case insensitive
 x 2023-09-21 2023-09-14 Do not sort when changing priority, it messes with the flow
 x 2023-09-21 2023-09-19 Recur from now on todo.txt is not working on lunch with Shantelle
+x 2024-01-25 2023-09-13 Move search bar to where the Add bar is
+x 2024-01-25 2023-10-24 Remove autosort and move it to a button
+x 2024-01-25 2024-01-23 Change todo.txt search to include, exclude tokens separated by spaces

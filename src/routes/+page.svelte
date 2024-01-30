@@ -1,42 +1,64 @@
 <script>
-	import OpenFile from './OpenFile.svelte';
-	import StatusArea from './StatusArea.svelte';
+	import OpenFile from './File.svelte';
+	import StatusArea from './Status.svelte';
 	import TodosView from './TodosView.svelte';
-	import FilterContexts from './FilterContexts.svelte';
-	import FilterProjects from './FilterProjects.svelte';
-	import FilterPriorities from './FilterPriorities.svelte';
-	import ShortcutKeys from './ShortcutKeys.svelte';
+	import FilterContexts from './Contexts.svelte';
+	import FilterProjects from './Projects.svelte';
+	import FilterPriorities from './Priorities.svelte';
+	import ShortcutKeys from './Shortcuts.svelte';
 	import Sort from './Sort.svelte';
+	import HeaderLinks from './HeaderLinks.svelte';
+	import FooterLinks from './FooterLinks.svelte';
+	import Filter from './Filter.svelte';
 </script>
 
 <svelte:head>
-	<title>todo.txt web editor</title>
+	<title>todo.txt editor</title>
 </svelte:head>
 
-<div class="container">
-	<StatusArea />
-	<OpenFile />
-	<Sort/>
+<HeaderLinks />
 
-	<div><FilterPriorities /></div>
-	<div><FilterContexts /></div>
-	<div><FilterProjects /></div>
+<StatusArea />
+<OpenFile />
+<Sort />
 
-	<TodosView />
-	<ShortcutKeys />
+<div class="two-column">
+	<div>
+		<TodosView />
+	</div>
+	<div>
+		<FilterPriorities />
+		<FilterProjects />
+		<FilterContexts />
+		<Filter />
+	</div>
 </div>
 
+<ShortcutKeys />
+
+<FooterLinks />
+
 <style>
-	div {
-		/** valign to center */
+	.two-column {
 		display: flex;
-		align-items: center;
-		margin: 0.5rem 0;
+		flex-wrap: wrap;
+		gap: 2%;
+	}
+	.two-column > *:nth-child(1) {
+		width: 69%;
+	}
+	.two-column > *:nth-child(2) {
+		width: 29%;
 	}
 
-	.container {
-		display: block;
-		width: fit-content;
-		margin: 0 auto;
+	@media (orientation: portrait) {
+		.two-column > *:nth-child(1) {
+			width:100%;
+			order: 1;
+		}
+		.two-column > *:nth-child(2) {
+			width:100%;
+			order: -1;
+		}
 	}
 </style>

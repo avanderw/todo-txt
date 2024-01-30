@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 
 export var TodoTxt = (function () {
   var SORT_ASC = 'asc';
