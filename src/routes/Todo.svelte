@@ -47,6 +47,13 @@
 		$todoItems = $todoItems;
 	}
 
+	function againTodo() {
+		const newTodo = TodoTxt.parseLine(todo.render());
+		newTodo.setCreatedDate(new Date().toISOString());
+		$todoTxt.addItem(newTodo);
+		$todoTxt = $todoTxt;
+		completeTodo();
+	}
 </script>
 
 <li>
@@ -56,6 +63,7 @@
 		<button on:click={completeTodo} class="complete"><svg><use href="feather-sprite.svg#circle" /></svg></button>
 	{/if}
 
+	<button on:click={againTodo(todo)}><svg><use href="feather-sprite.svg#repeat" /></button>
 	<button on:click={deleteTodo}><svg><use href="feather-sprite.svg#trash-2" /></svg></button>
 	{#if editing}
 		<form on:submit={editTodo}>
