@@ -43,8 +43,8 @@
 	<div>
 		<span class:done={doneInPast(matches, 4)}>&nbsp;</span>
         <span class:done={doneInPast(matches, 3)}>&nbsp;</span>
-        <span class:done={doneInPast(matches, 2)}>&nbsp;</span>
-        <span class:done={doneInPast(matches, 1)}>&nbsp;</span>
+        <span class:done={doneInPast(matches, 2)} class:weekend={true}>&nbsp;</span>
+        <span class:done={doneInPast(matches, 1)} class:weekend={true}>&nbsp;</span>
         <span class:done={doneInPast(matches, 0)}>&nbsp;</span>
 	</div>
 {/if}
@@ -54,6 +54,7 @@
 		display: flex;
 		align-items: center;
 		gap: 0.25rem;
+        margin-right: 0.25rem;
 	}
 
 	span {
@@ -63,5 +64,11 @@
 	}
     span.done {
         background-color: var(--secondary-6);
+    }
+    span.weekend {
+        border-color: var(--accent-7);
+    }
+    span.done.weekend {
+        background-color: var(--accent-7);
     }
 </style>
