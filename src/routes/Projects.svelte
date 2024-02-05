@@ -102,6 +102,6 @@
 		border: none;
 	}
 	button.visible {
-		color: var(--secondary-8);
+		color: var(--secondary-6);
 	}
 </style>

@@ -12,7 +12,6 @@
 				.flat()
 				.filter((project, index, self) => self.indexOf(project) === index); // remove duplicates
 		}
-		console.log(allPriority);
 	});
 
 	let visiblePriority = [];
@@ -54,7 +53,6 @@
 
 	function buildPriority(allPriority, visiblePriority, hiddenPriority) {
 		return allPriority.map((priority) => {
-			console.log(priority);
 			return {
 				name: priority,
 				visible: visiblePriority.includes(priority) && !hiddenPriority.includes(priority),
@@ -108,6 +106,6 @@
 		border: none;
 	}
 	button.visible {
-		color: var(--secondary-8);
+		color: var(--secondary-6);
 	}
 </style>

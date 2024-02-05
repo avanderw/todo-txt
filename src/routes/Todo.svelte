@@ -4,6 +4,7 @@
 	import { removePri } from '$lib/todotxt-util';
 	import { isRecur, recurDue } from '$lib/todotxt-addon';
 	import { TodoTxt } from '$lib/todotxt';
+	import Habits from './Habits.svelte';
 
 	export let todo;
 
@@ -29,7 +30,6 @@
 			const newDue = recurDue(todo.addons().due);
 			const newTodo = TodoTxt.parseLine(todo.render());
 			newTodo.setAddOn('due', newDue);
-			console.log(newTodo.render());
 			$todoTxt.addItem(newTodo);
 			$todoTxt = $todoTxt;
 		}
@@ -57,6 +57,7 @@
 </script>
 
 <li>
+	<div>
 	{#if todo.isComplete()}
 		<button on:click={uncompleteTodo} class="complete"><svg><use href="feather-sprite.svg#check-circle" /></svg></button>
 	{:else}
@@ -82,6 +83,8 @@
 	{:else}
 		<button on:click={startEdit} class="raw">{todo.render()}</button>
 	{/if}
+	</div>
+	<Habits {todo} />
 </li>
 
 <style>
@@ -92,10 +95,17 @@
     li {
         list-style: none;
         display: flex;
+		justify-content: space-between;
     }
     li:nth-child(even) {
         background: var(--primary-2);
     }
+
+	div {
+        list-style: none;
+        display: flex;
+		width:80%;
+	}
 
     button.raw {
         overflow: hidden;

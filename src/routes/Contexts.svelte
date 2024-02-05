@@ -12,7 +12,6 @@
 				.flat()
 				.filter((project, index, self) => self.indexOf(project) === index); // remove duplicates
 		}
-		console.log(allContexts);
 	});
 
 	let visibleContexts = [];
@@ -115,6 +114,6 @@
 		border: none;
 	}
 	button.visible {
-		color: var(--secondary-8);
+		color: var(--secondary-6);
 	}
 </style>
