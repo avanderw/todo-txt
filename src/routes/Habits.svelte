@@ -37,15 +37,21 @@
         const completedDates = matches.map((item) => item.render().match(completedDateRegex)[1]);
         return completedDates.includes(checkISO);
     }
+
+	function isWeekend(daysBack) {
+		const checkDate = new Date().setDate(new Date().getDate() - daysBack);
+		const day = new Date(checkDate).getDay();
+		return day === 0 || day === 6;
+	}
 </script>
 
 {#if isHabit(search, matches)}
 	<div>
-		<span class:done={doneInPast(matches, 4)}>&nbsp;</span>
-        <span class:done={doneInPast(matches, 3)}>&nbsp;</span>
-        <span class:done={doneInPast(matches, 2)} class:weekend={true}>&nbsp;</span>
-        <span class:done={doneInPast(matches, 1)} class:weekend={true}>&nbsp;</span>
-        <span class:done={doneInPast(matches, 0)}>&nbsp;</span>
+		<span class:done={doneInPast(matches, 4)} class:weekend={isWeekend(4)}>&nbsp;</span>
+        <span class:done={doneInPast(matches, 3)} class:weekend={isWeekend(3)}>&nbsp;</span>
+        <span class:done={doneInPast(matches, 2)} class:weekend={isWeekend(2)}>&nbsp;</span>
+        <span class:done={doneInPast(matches, 1)} class:weekend={isWeekend(1)}>&nbsp;</span>
+        <span class:done={doneInPast(matches, 0)} class:weekend={isWeekend(0)}>&nbsp;</span>
 	</div>
 {/if}
 
