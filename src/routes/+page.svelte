@@ -10,6 +10,7 @@
 	import HeaderLinks from './HeaderLinks.svelte';
 	import FooterLinks from './FooterLinks.svelte';
 	import Filter from './Filter.svelte';
+	import Agenda from './Agenda.svelte';
 </script>
 
 <svelte:head>
@@ -31,6 +32,7 @@
 		<FilterProjects />
 		<FilterContexts />
 		<Filter />
+		<Agenda />
 	</div>
 </div>
 

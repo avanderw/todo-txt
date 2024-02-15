@@ -124,7 +124,6 @@ function recurMonth(date, operator, value) {
         default:
             throw new Error('Invalid recurrence operator');
     }
-    console.log(date, operator, value, newDate);
     return newDate;
 }
 
