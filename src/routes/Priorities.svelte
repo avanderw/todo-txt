@@ -72,10 +72,6 @@
 			const value = priorityRegex.exec($andFilter)[0];
 			$andFilter = $andFilter.replace(value, ' ');
 		}
-		while (priorityRegex.test($notFilter)) {
-			const value = priorityRegex.exec($notFilter)[0];
-			$notFilter = $notFilter.replace(value, ' ');
-		}
 
 		switch (priState) {
 			case 'include':
