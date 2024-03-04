@@ -1,6 +1,6 @@
 <script>
 	//@ts-nocheck
-	import { todoItems, todoTxt, andFilter } from '$lib/stores';
+	import { todoItems, todoTxt, andFilter, notFilter } from '$lib/stores';
 	import HideComplete from './HideComplete.svelte';
 
 	function filterTodos(andFilter, notFilter, orFilter) {
@@ -46,12 +46,12 @@
 		return andSet || notSet || orSet;
 	}
 
-	let notFilter, orFilter;
-	$: $todoItems = filterTodos($andFilter, notFilter, orFilter);
-	$: disableClear = !filterSet($andFilter, notFilter, orFilter);
+	let orFilter;
+	$: $todoItems = filterTodos($andFilter, $notFilter, orFilter);
+	$: disableClear = !filterSet($andFilter, $notFilter, orFilter);
 
 	todoTxt.subscribe(() => {
-		$todoItems = filterTodos($andFilter, notFilter, orFilter);
+		$todoItems = filterTodos($andFilter, $notFilter, orFilter);
 	});
 </script>
 
@@ -76,10 +76,10 @@
 		id="exclude"
 		type="text"
 		placeholder="Exclude..."
-		bind:value={notFilter}
+		bind:value={$notFilter}
 		on:keyup={(e) => {
 			if (e.key === 'Escape') {
-				notFilter = '';
+				$notFilter = '';
 			}
 		}}
 	/>
@@ -98,7 +98,7 @@
 
 	<button
 		on:click={() => {
-			$andFilter = notFilter = orFilter = '';
+			$andFilter = $notFilter = orFilter = '';
 			return;
 		}}
 		type="reset"

@@ -1,6 +1,6 @@
 <script>
 	// @ts-nocheck
-	import { todoTxt, todoItems, hide, andFilter } from '$lib/stores';
+	import { todoTxt, todoItems, hide, andFilter, notFilter } from '$lib/stores';
 
 	let allPriority = [];
 	todoTxt.subscribe((list) => {
@@ -62,18 +62,34 @@
 	}
 
 	function togglePriorityFilter(priority) {
+		let priState = 'none';
+		priState = $andFilter.toLowerCase().indexOf(`(${priority.toLowerCase()})`) >= 0 ? 'include' : priState;
+		priState = $notFilter.toLowerCase().indexOf(`(${priority.toLowerCase()})`) >= 0 ? 'exclude' : priState;
+		
 		const priorityRegex = /\s*\([A-Z]\)\s*/i;
-		let value = '';
 		if (priorityRegex.test($andFilter)) {
-			value = priorityRegex.exec($andFilter)[0];
+			const value = priorityRegex.exec($andFilter)[0];
 			$andFilter = $andFilter.replace(value, ' ');
 		}
-
-		$andFilter = $andFilter.trim();
-		if (value.indexOf(priority) < 0) {
-			$andFilter = $andFilter + ` (${priority})`;
-			$andFilter = $andFilter.trim();
+		while (priorityRegex.test($notFilter)) {
+			const value = priorityRegex.exec($notFilter)[0];
+			$notFilter = $notFilter.replace(value, ' ');
 		}
+
+		switch (priState) {
+			case 'include':
+				$andFilter = $andFilter.replace(`(${priority})`, ' ');
+				$notFilter = $notFilter + ` (${priority})`;
+				break;
+			case 'exclude':
+				$notFilter = $notFilter.replace(`(${priority})`, ' ');
+				break;
+			case 'none':
+				$andFilter = $andFilter + ` (${priority})`;
+				break;
+		}
+		$andFilter = $andFilter.trim();
+		$notFilter = $notFilter.trim();
 	}
 </script>
 
@@ -84,6 +100,8 @@
 		<button class:visible={pri.visible} on:click={togglePriorityFilter(pri.name)}>
 			{#if pri.selected}
 				<svg><use href="feather-sprite.svg#check-square" /></svg>
+			{:else if $notFilter.indexOf(`(${pri.name})`) >= 0}
+				<svg><use href="feather-sprite.svg#x-square" /></svg>
 			{:else}
 				<svg><use href="feather-sprite.svg#square" /></svg>
 			{/if}
