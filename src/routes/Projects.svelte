@@ -51,6 +51,7 @@
 		return allProjects.map((project) => {
 			return {
 				name: project,
+				count: $todoItems.filter(t=>t.projects().indexOf(project) != -1).filter(t=>$hide ? !t.isComplete() : true).length,
 				visible: visibleProjects.includes(project) && !hiddenProjects.includes(project),
 				selected: $andFilter.toLowerCase().indexOf(project.toLowerCase()) >= 0
 			};
@@ -83,7 +84,7 @@
 			{:else}
 				<svg><use href="feather-sprite.svg#square" /></svg>
 			{/if}
-			{project.name}
+			[{project.count}] {project.name}
 		</button>
 	{/each}
 {/if}
