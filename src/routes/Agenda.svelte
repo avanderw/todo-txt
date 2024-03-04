@@ -83,19 +83,21 @@
 	<ul>
 		{#each agenda.today as item}
 			<li>
-				<button on:click={filter(item)} style="color: var(--secondary-5)"
-					>{removeDue(removeCreatedDate(item.render()))}</button
-				>
+				<button on:click={filter(item)} style="color: var(--secondary-5)">
+					{removeDue(removeCreatedDate(item.render()))}
+				</button>
 			</li>
 		{/each}
 	</ul>
 {/if}
 {#if agenda.tomorrow.length > 0}
-	<h3>Due tomorrow</h3>
+	<h3 style="color: var(--secondary-5)">Due tomorrow</h3>
 	<ul>
 		{#each agenda.tomorrow as item}
 			<li>
-				<button on:click={filter(item)}>{removeDue(removeCreatedDate(item.render()))}</button>
+				<button on:click={filter(item)} style="color: var(--secondary-5)">
+					{removeDue(removeCreatedDate(item.render()))}
+				</button>
 			</li>
 		{/each}
 	</ul>
