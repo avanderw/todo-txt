@@ -119,4 +119,12 @@
         background: none;
         border: none;
     }
+	form {
+		width: 100%;
+	}
+	input {
+		font-size: inherit;
+		width: 100%;
+		border: none;
+	}
 </style>
