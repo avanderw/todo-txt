@@ -55,6 +55,7 @@
 		return allPriority.map((priority) => {
 			return {
 				name: priority,
+				count: $todoItems.filter(t=>t.priority() === priority).filter(t=>$hide ? !t.isComplete() : true).length,
 				visible: visiblePriority.includes(priority) && !hiddenPriority.includes(priority),
 				selected: $andFilter.toLowerCase().indexOf(`(${priority.toLowerCase()})`) >= 0
 			};
@@ -105,7 +106,7 @@
 			{:else}
 				<svg><use href="feather-sprite.svg#square" /></svg>
 			{/if}
-			({pri.name})
+			({pri.name}):{pri.count}
 		</button>
 	{/each}
 {/if}

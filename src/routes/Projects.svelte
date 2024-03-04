@@ -84,7 +84,7 @@
 			{:else}
 				<svg><use href="feather-sprite.svg#square" /></svg>
 			{/if}
-			[{project.count}] {project.name}
+			{project.name}:{project.count}
 		</button>
 	{/each}
 {/if}
