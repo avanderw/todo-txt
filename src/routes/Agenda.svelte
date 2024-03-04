@@ -66,6 +66,7 @@
 	}
 </script>
 
+<h2>Agenda</h2>
 {#if agenda.pastdue.length > 0}
 	<h3 style="color: var(--accent-5)">Past due</h3>
 	<ul>
@@ -126,5 +127,10 @@
 	}
 	ul {
 		padding: 0;
+		margin: 0;
+	}
+	h3 {
+		margin-bottom: 0;
+		font-weight: 600;
 	}
 </style>
