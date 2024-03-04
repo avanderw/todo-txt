@@ -52,6 +52,7 @@
 		return allContexts.map((context) => {
 			return {
 				name: context,
+				count: $todoItems.filter(t=>t.contexts().indexOf(context) != -1).filter(t=>$hide ? !t.isComplete() : true).length,
 				visible: visibleContexts.includes(context) && !hiddenContexts.includes(context),
 				selected: $andFilter.toLowerCase().indexOf(context.toLowerCase()) >= 0
 			};
@@ -95,7 +96,7 @@
 			{:else}
 				<svg><use href="feather-sprite.svg#square" /></svg>
 			{/if}
-			{context.name}
+			{context.name}:{context.count}
 		</button>
 	{/each}
 {/if}
