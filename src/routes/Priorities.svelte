@@ -55,7 +55,9 @@
 		return allPriority.map((priority) => {
 			return {
 				name: priority,
-				count: $todoItems.filter(t=>t.priority() === priority).filter(t=>$hide ? !t.isComplete() : true).length,
+				count: $todoItems
+					.filter((t) => t.priority() === priority)
+					.filter((t) => ($hide ? !t.isComplete() : true)).length,
 				visible: visiblePriority.includes(priority) && !hiddenPriority.includes(priority),
 				selected: $andFilter.toLowerCase().indexOf(`(${priority.toLowerCase()})`) >= 0
 			};
@@ -64,14 +66,10 @@
 
 	function togglePriorityFilter(priority) {
 		let priState = 'none';
-		priState = $andFilter.toLowerCase().indexOf(`(${priority.toLowerCase()})`) >= 0 ? 'include' : priState;
-		priState = $notFilter.toLowerCase().indexOf(`(${priority.toLowerCase()})`) >= 0 ? 'exclude' : priState;
-		
-		const priorityRegex = /\s*\([A-Z]\)\s*/i;
-		if (priorityRegex.test($andFilter)) {
-			const value = priorityRegex.exec($andFilter)[0];
-			$andFilter = $andFilter.replace(value, ' ');
-		}
+		priState =
+			$andFilter.toLowerCase().indexOf(`(${priority.toLowerCase()})`) >= 0 ? 'include' : priState;
+		priState =
+			$notFilter.toLowerCase().indexOf(`(${priority.toLowerCase()})`) >= 0 ? 'exclude' : priState;
 
 		switch (priState) {
 			case 'include':
@@ -82,6 +80,11 @@
 				$notFilter = $notFilter.replace(`(${priority})`, ' ');
 				break;
 			case 'none':
+				const priorityRegex = /\s*\([A-Z]\)\s*/i;
+				while (priorityRegex.test($andFilter)) {
+					const value = priorityRegex.exec($andFilter)[0];
+					$andFilter = $andFilter.replace(value, ' ');
+				}
 				$andFilter = $andFilter + ` (${priority})`;
 				break;
 		}

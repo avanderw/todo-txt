@@ -1,6 +1,6 @@
 <script>
 	// @ts-nocheck
-	import { todoTxt, todoItems, hide, andFilter } from '$lib/stores';
+	import { todoTxt, todoItems, hide, andFilter, notFilter } from '$lib/stores';
 
 	let allProjects = [];
 	todoTxt.subscribe((list) => {
@@ -15,7 +15,7 @@
 	});
 
 	let visibleProjects = [];
-	todoItems.subscribe((items)=>{
+	todoItems.subscribe((items) => {
 		if (items) {
 			visibleProjects = items
 				.map((todo) => todo.projects()) // get projects
@@ -28,17 +28,21 @@
 	let hiddenProjects = [];
 	hide.subscribe((value) => {
 		if (value && $todoItems) {
-			const incompleteProjects = $todoItems.filter((todo) => !todo.isComplete())
+			const incompleteProjects = $todoItems
+				.filter((todo) => !todo.isComplete())
 				.map((todo) => todo.projects()) // get projects
 				.filter((project) => project.length > 0) // remove empty projects
 				.flat()
 				.filter((project, index, self) => self.indexOf(project) === index); // remove duplicates
-			const completeProjects = $todoItems.filter((todo) => todo.isComplete())
+			const completeProjects = $todoItems
+				.filter((todo) => todo.isComplete())
 				.map((todo) => todo.projects()) // get projects
 				.filter((project) => project.length > 0) // remove empty projects
 				.flat()
 				.filter((project, index, self) => self.indexOf(project) === index); // remove duplicates
-			const diffProjects = completeProjects.filter((project) => !incompleteProjects.includes(project));
+			const diffProjects = completeProjects.filter(
+				(project) => !incompleteProjects.includes(project)
+			);
 			hiddenProjects = diffProjects;
 		} else {
 			hiddenProjects = [];
@@ -51,7 +55,9 @@
 		return allProjects.map((project) => {
 			return {
 				name: project,
-				count: $todoItems.filter(t=>t.projects().indexOf(project) != -1).filter(t=>$hide ? !t.isComplete() : true).length,
+				count: $todoItems
+					.filter((t) => t.projects().indexOf(project) != -1)
+					.filter((t) => ($hide ? !t.isComplete() : true)).length,
 				visible: visibleProjects.includes(project) && !hiddenProjects.includes(project),
 				selected: $andFilter.toLowerCase().indexOf(project.toLowerCase()) >= 0
 			};
@@ -81,6 +87,8 @@
 		<button class:visible={project.visible} on:click={toggleProjectFilter(project.name)}>
 			{#if project.selected}
 				<svg><use href="feather-sprite.svg#check-square" /></svg>
+			{:else if $notFilter.indexOf(`${project.name}`) >= 0}
+				<svg><use href="feather-sprite.svg#x-square" /></svg>
 			{:else}
 				<svg><use href="feather-sprite.svg#square" /></svg>
 			{/if}
